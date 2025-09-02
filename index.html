@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Automation Infographic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            min-width: 280px;
+        }
+        .flow-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen p-6">
+
+    <div class="max-w-6xl mx-auto w-full bg-gray-800 p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-700">
+        <!-- Main Header -->
+        <header class="text-center mb-10 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-2">
+                Simpro API Automation
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400">A step-by-step breakdown of your setup tool's workflow.</p>
+        </header>
+
+        <!-- Infographic Flow Container -->
+        <div class="flow-container">
+
+            <!-- Step 1: User Input -->
+            <div class="card flex flex-col items-center text-center bg-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="w-16 h-16 flex items-center justify-center mb-4 bg-gray-600 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-indigo-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5A7.5 7.5 0 0 0 10.5 6Zm0 0c-1.866 0-3.524 1.166-4.48 2.915a.75.75 0 0 0 .004.721c.974 1.761 2.871 2.91 5.093 2.91h2.55v-1.5a.75.75 0 0 1 1.5 0v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v2.55c0 2.222-1.149 4.119-2.91 5.093a.75.75 0 0 0-.721-.004c-1.761-.974-2.91-2.871-2.91-5.093v-2.55H6.015A7.5 7.5 0 0 0 10.5 6Z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">1. User Input & Auth</h3>
+                <p class="text-sm text-gray-400">The tool prompts you for the API Base URL and Token via a GUI, then validates the credentials by fetching a list of companies.</p>
+            </div>
+
+            <!-- Step 2: Company & File Selection -->
+            <div class="card flex flex-col items-center text-center bg-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="w-16 h-16 flex items-center justify-center mb-4 bg-gray-600 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-green-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3h7.5m-7.5-6h7.5m2.25-1.5v4.5m-2.25 0h-1.5m-1.5 0h-1.5m1.5-3v-4.5m-1.5 0h-1.5m-1.5 0h-1.5m3-6.75a3.75 3.75 0 0 1 3.75-3.75h6a3.75 3.75 0 0 1 3.75 3.75v10.5a3.75 3.75 0 0 1-3.75 3.75h-6a3.75 3.75 0 0 1-3.75-3.75v-10.5Z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">2. Company & File Selection</h3>
+                <p class="text-sm text-gray-400">You select a company from the fetched list and choose the Excel file to process. The setup tool then loads the workbook from the selected file path.</p>
+            </div>
+            
+            <!-- Step 3: Processing Asset Types -->
+            <div class="card flex flex-col items-center text-center bg-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="w-16 h-16 flex items-center justify-center mb-4 bg-gray-600 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-yellow-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5M3.75 12h16.5m-16.5 4.5h16.5" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">3. Process Asset Types</h3>
+                <p class="text-sm text-gray-400">The setup tool reads the 'AssetTypes' sheet and uses API `POST` calls to create new asset types. It checks for existing assets to prevent duplicates.</p>
+            </div>
+
+            <!-- Step 4: Processing Service Levels -->
+            <div class="card flex flex-col items-center text-center bg-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="w-16 h-16 flex items-center justify-center mb-4 bg-gray-600 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 0 0 7.5-12.968l-1.426-1.426A3.375 3.375 0 0 1 18 6.54v.16a3.75 3.75 0 0 0 .428-.428L20.5 2.5m-18 18L13.5 12" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">4. Process Service Levels</h3>
+                <p class="text-sm text-gray-400">The setup tool reads the 'AssetTypeServiceLevels' sheet, mapping service levels to the asset types created in the previous step.</p>
+            </div>
+
+            <!-- Step 5: Processing Failure Points -->
+            <div class="card flex flex-col items-center text-center bg-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="w-16 h-16 flex items-center justify-center mb-4 bg-gray-600 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.731 0 2.813-1.874 1.948-3.374L13.949 3.375c-.866-1.5-3.033-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">5. Process Failure Points</h3>
+                <p class="text-sm text-gray-400">The setup tool processes the 'FailurePoints' sheet to create new failure points and associate them with the relevant service levels for each asset type.</p>
+            </div>
+
+            <!-- Step 6: Processing Custom Fields -->
+            <div class="card flex flex-col items-center text-center bg-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="w-16 h-16 flex items-center justify-center mb-4 bg-gray-600 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-teal-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6a2.25 2.25 0 0 0-2.25 2.25v2.25m-2.25-2.25a2.25 2.25 0 0 0-2.25-2.25m0 4.5a2.25 2.25 0 0 0 2.25 2.25m-2.25-2.25H9.75v-.75m-6 2.25H2.25M6 18h.75m-3 0h.75" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">6. Process Custom Fields</h3>
+                <p class="text-sm text-gray-400">The setup tool reads the 'AssetTypeCustomFields' sheet and creates custom fields, associating them with the asset types.</p>
+            </div>
+
+            <!-- Step 7: Processing Test Results -->
+            <div class="card flex flex-col items-center text-center bg-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                <div class="w-16 h-16 flex items-center justify-center mb-4 bg-gray-600 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-blue-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">7. Process Test Results</h3>
+                <p class="text-sm text-gray-400">The final step processes the 'AssetTypeServiceLevelTestResult' sheet, creating new test readings and linking them to the appropriate service levels.</p>
+            </div>
+            
+        </div>
+
+        <div class="mt-8 text-center text-gray-500 text-sm italic">
+            <p>This infographic visualizes the data flow from a local Excel file to a cloud-based Simpro database via the API, orchestrated by your setup tool. The flow proceeds sequentially, with each step depending on the completion of the previous ones.</p>
+        </div>
+    </div>
+
+</body>
+</html>
+Add initial HTML file
