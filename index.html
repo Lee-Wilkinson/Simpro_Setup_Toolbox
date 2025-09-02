@@ -29,7 +29,7 @@
         <!-- Main Header -->
         <header class="text-center mb-10 md:mb-16">
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-2">
-                Simpro Asset Setup Importer
+                Simpro API Automation
             </h1>
             <p class="text-lg md:text-xl text-gray-400">A step-by-step breakdown of your setup tool's workflow.</p>
         </header>
@@ -37,15 +37,28 @@
         <!-- Infographic Flow Container -->
         <div class="flow-container">
 
-            <!-- Step 1: User Input -->
+            <!-- Step 1: User Input - Now with a form! -->
             <div class="card flex flex-col items-center text-center bg-gray-700 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
                 <div class="w-16 h-16 flex items-center justify-center mb-4 bg-gray-600 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-indigo-400">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5A7.5 7.5 0 0 0 10.5 6Zm0 0c-1.866 0-3.524 1.166-4.48 2.915a.75.75 0 0 0 .004.721c.974 1.761 2.871 2.91 5.093 2.91h2.55v-1.5a.75.75 0 0 1 1.5 0v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v2.55c0 2.222-1.149 4.119-2.91 5.093a.75.75 0 0 0-.721-.004c-1.761-.974-2.91-2.871-2.91-5.093v-2.55H6.015A7.5 7.5 0 0 0 10.5 6Z" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-white mb-2">1. User Input & Auth</h3>
-                <p class="text-sm text-gray-400">The tool prompts you for the API Base URL and Token via a GUI, then validates the credentials by fetching a list of companies.</p>
+                <h3 class="text-xl font-semibold text-white mb-4">1. User Input & Auth</h3>
+                <form id="apiForm" class="w-full space-y-4">
+                    <div class="text-left">
+                        <label for="baseUrl" class="block text-sm font-medium text-gray-400 mb-1">Base URL</label>
+                        <input type="text" id="baseUrl" name="baseUrl" class="w-full px-3 py-2 bg-gray-600 text-white rounded-md focus:outline-none focus:ring focus:ring-indigo-500" placeholder="e.g., https://api.simprosuite.com" required>
+                    </div>
+                    <div class="text-left">
+                        <label for="token" class="block text-sm font-medium text-gray-400 mb-1">API Token</label>
+                        <input type="password" id="token" name="token" class="w-full px-3 py-2 bg-gray-600 text-white rounded-md focus:outline-none focus:ring focus:ring-indigo-500" placeholder="e.g., XXXXXXXXXXXXX" required>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                        Process
+                    </button>
+                    <div id="statusMessage" class="mt-4 text-center font-medium"></div>
+                </form>
             </div>
 
             <!-- Step 2: Company & File Selection -->
@@ -56,7 +69,7 @@
                     </svg>
                 </div>
                 <h3 class="text-xl font-semibold text-white mb-2">2. Company & File Selection</h3>
-                <p class="text-sm text-gray-400">You select a company from the fetched list and choose the Excel file to process. The setup tool then loads the workbook from the selected file path.</p>
+                <p class="text-sm text-gray-400">The server will fetch a list of companies based on your credentials. In a real application, you would then upload your Excel file to the server for processing.</p>
             </div>
             
             <!-- Step 3: Processing Asset Types -->
@@ -120,6 +133,40 @@
             <p>This infographic visualizes the data flow from a local Excel file to a cloud-based Simpro database via the API, orchestrated by your setup tool. The flow proceeds sequentially, with each step depending on the completion of the previous ones.</p>
         </div>
     </div>
+<script>
+    document.getElementById('apiForm').addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent the form from submitting normally
 
+        const baseUrl = document.getElementById('baseUrl').value;
+        const token = document.getElementById('token').value;
+        const statusMessage = document.getElementById('statusMessage');
+
+        statusMessage.textContent = 'Processing...';
+        statusMessage.className = 'text-yellow-400 font-medium mt-4';
+
+        try {
+            const response = await fetch('http://127.0.0.1:5000/process-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ baseUrl, token }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                statusMessage.textContent = result.message;
+                statusMessage.className = 'text-green-400 font-medium mt-4';
+            } else {
+                statusMessage.textContent = `Error: ${result.error}`;
+                statusMessage.className = 'text-red-400 font-medium mt-4';
+            }
+        } catch (error) {
+            statusMessage.textContent = `An error occurred: ${error.message}`;
+            statusMessage.className = 'text-red-400 font-medium mt-4';
+        }
+    });
+</script>
 </body>
 </html>
